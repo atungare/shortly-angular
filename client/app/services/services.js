@@ -1,7 +1,6 @@
 angular.module('shortly.services', [])
 
 .factory('Links', function ($http) {
-  // Your code here
   var getLinks = function(){
     return $http({
       method: 'GET',
@@ -11,8 +10,19 @@ angular.module('shortly.services', [])
     });
   };
 
+  var addLink = function(link){
+    return $http({
+      method: 'POST',
+      url: '/api/links',
+      data: link
+    }).then(function(resp){
+      return 'Successfully Sent Link for Shortening';
+    });
+  };
+
   return {
-    getLinks: getLinks
+    getLinks: getLinks,
+    addLink: addLink
   };
 })
 .factory('Auth', function ($http, $location, $window) {
