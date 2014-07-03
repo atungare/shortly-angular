@@ -6,7 +6,8 @@
   </ul>
 </nav>
 <div id='container'>
-  <div class='link' ng-repeat='link in data.links | orderBy: "-visits"' ng-click='goToShort(link)'>
+  <input class="search" ng-model="search" type="text" placeholder="Filter results">
+  <div class='link' ng-repeat='link in data.links | filter:search | orderBy: "-visits"' ng-click='goToShort(link)'>
     <img src='./assets/redirect_icon.png' />
     <div class='visits'>Visits
       <span class='count'>{{ link.visits }}</span>
