@@ -1,6 +1,6 @@
 angular.module('shortly.links', [])
 
-.controller('LinksController', function ($scope, Links, $window) {
+.controller('LinksController', function ($scope, Links, $window, Auth) {
   $scope.data = {};
   $scope.getLinks = function(){
     Links.getLinks().then(function(links) {
@@ -11,4 +11,6 @@ angular.module('shortly.links', [])
   $scope.goToShort = function(link){
     $window.location.href = link.base_url + '/' + link.code;
   };
+
+  $scope.signout = Auth.signout;
 });

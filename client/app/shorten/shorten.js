@@ -1,6 +1,6 @@
 angular.module('shortly.shorten', [])
 
-.controller('ShortenController', function ($scope, $location, Links) {
+.controller('ShortenController', function ($scope, $location, Links, Auth) {
   $scope.link = {};
   $scope.loading = false;
 
@@ -10,9 +10,14 @@ angular.module('shortly.shorten', [])
     $scope.link.url = $scope.urlToShorten;
     $scope.urlToShorten = null;
 
-    Links.addLink($scope.link).then(function(message){
-      $scope.loading = false;
-      $location.path('/links');
-    });
+    Links.addLink($scope.link)
+      .then(function(){
+        $scope.loading = false;
+        $location.path('/links');
+      })
+      .catch(function(err) {
+        alert(err);
+      });
   };
+  $scope.signout = Auth.signout;
 });
