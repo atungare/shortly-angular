@@ -1,2 +1,18 @@
+<nav class='navigation'>
+  <ul>
+    <li><a href='/#/links'>Links</a></li>
+    <li><a href='/#/shorten'>Shorten</a></li>
+    <!-- <li><a href='/signout'>Links</a></li> -->
+  </ul>
+</nav>
 <div id='container'>
+  <div class='link' ng-repeat='link in data.links' ng-click='goToShort(link)'>
+    <img src='./assets/redirect_icon.png' />
+    <div class='visits'>Visits
+      <span class='count'>{{ link.visits }}</span>
+    </div>
+    <div class='title'>{{ link.title }}</div>
+    <div class='original'>{{ link.url }}</div>
+    <div class='info'>{{ link.base_url + '/' + link.code }}</div>
+  </div>
 </div>

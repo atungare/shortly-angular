@@ -1,6 +1,6 @@
 angular.module('shortly.links', [])
 
-.controller('LinksController', function ($scope, Links) {
+.controller('LinksController', function ($scope, Links, $window) {
   $scope.data = {};
   $scope.getLinks = function(){
     Links.getLinks().then(function(links) {
@@ -8,4 +8,7 @@ angular.module('shortly.links', [])
     });
   };
   $scope.getLinks();
+  $scope.goToShort = function(link){
+    $window.location.href = link.base_url + '/' + link.code;
+  };
 });
